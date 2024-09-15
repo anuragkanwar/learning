@@ -40,13 +40,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
-          cache: pnpm
+          cache: yarn
       - name : Yarn version
-        run : pnpm --version
+        run : yarn --version
       - name: Install dependencies
-        run: pnpm install
+        run: yarn install
       - name: Build
-        run: pnpm build
+        run: yarn build
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
