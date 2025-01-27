@@ -19,7 +19,7 @@ export const DocsRating = ({ label }) => {
 
     if (window.gtag) {
       window.gtag('event', 'doc-feedback', {
-        event_category: 'engagement',
+        event_category: 'user_feedback',
         event_label: label,
         value: val,
       })
