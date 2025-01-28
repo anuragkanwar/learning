@@ -71,16 +71,21 @@ jobs:
       - name : Yarn version
         run : yarn --version
       - name: Install dependencies
+        if: "${{steps.setup.outputs.environment == 'prod'}}"
         run: yarn install
       - name: Build
+        if: "${{steps.setup.outputs.environment == 'prod'}}"
         run: yarn build
       - name: Setup Pages
+        if: "${{steps.setup.outputs.environment == 'prod'}}"
         uses: actions/configure-pages@v5
       - name: Upload artifact
+        if: "${{steps.setup.outputs.environment == 'prod'}}"
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
           path: build
       - name: Deploy to GitHub Pages
+        if: "${{steps.setup.outputs.environment == 'prod'}}"
         id: deployment
         uses: actions/deploy-pages@v4
