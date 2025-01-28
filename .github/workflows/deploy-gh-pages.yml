@@ -55,7 +55,7 @@ jobs:
           fetch-depth : 0
       - name: updateTag
         id: tag-update
-        if: "${steps.setup.environment == 'prod'}"
+        if: "${{steps.setup.environment == 'prod'}}"
         run : |
           git tag -d production || true
           git push origin :refs/tags/production || true
