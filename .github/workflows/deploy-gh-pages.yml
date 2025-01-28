@@ -59,7 +59,7 @@ jobs:
         run : |
           git config user.name "Github Actions"
           git config user.email "actions@github.com"
-          git tag -a -f production
+          git tag -f production
           git push --tags
       - name: Enable Corepack before setting up Node
         run: corepack enable
