@@ -17,6 +17,6 @@ jobs:
       run: |
           ls
           pwd
-          cat ./docs/go/launguage/link-here.md
+          cat ./docs/go/language/link-here.md
           ${{ github.ref }}
 
