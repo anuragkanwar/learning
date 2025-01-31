@@ -15,6 +15,7 @@ jobs:
         fetch-depth: 0
     - name: Check Dump
       run: |
+          pwd
           cat ./docs/go/launguage/link-here.md
           ${{ github.ref }}
 
