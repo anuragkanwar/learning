@@ -1,0 +1,20 @@
+name: Check Staging
+
+on:
+  push:
+    branches: [main]
+
+
+jobs:
+  prod:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout
+      with:
+        fetch-depth: 0
+    - name: Check Dump
+      run: |
+          cat ./docs/go/launguage/link-here.md
+          ${{ github.ref }}
+
