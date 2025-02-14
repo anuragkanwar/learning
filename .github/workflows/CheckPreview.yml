@@ -25,8 +25,8 @@ jobs:
         id: pr_info
         run: |
           PR_NUMBER="${{github.event.pull_request.number}}"
-          BASE_URL="/deploy_preview/pr-${PR_NUMBER}"
-          ESCAPED_BASE_URL="\/deploy_preview\/pr-${PR_NUMBER}"
+          BASE_URL="/deploy_preview/release/pr-${PR_NUMBER}"
+          ESCAPED_BASE_URL="\/deploy_preview\/release\/pr-${PR_NUMBER}"
           echo $PR_NUMBER
           echo $BASE_URL
           echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
@@ -48,6 +48,36 @@ jobs:
         uses: thollander/actions-comment-pull-request@v3
         with:
           message: |
-            | Preview URL | QR Code |
-            | ----------- | ------- |
-            | [Preview URL](https://staging.docs.digital.ai${{ steps.pr_info.outputs.BASE_URL }}) | ![QR Code](https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://staging.docs.digital.ai${{ steps.pr_info.outputs.BASE_URL }}) |
+            | Name | Link |
+            |---|---|
+            | 😎 Deploy Preview | <https://staging.docs.digital.ai${{ steps.pr_info.outputs.BASE_URL }}> |
+            | 📱 Preview On Mobile | ![QR Code](https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://staging.docs.digital.ai${{ steps.pr_info.outputs.BASE_URL }}&color=498500&ecc=H) |
+
+
+  cleanup-pr:
+    if: github.event.pull_request.merged == true || github.event.pull_request.closed == true || github.event.pull_request.draft == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth : 0
+
+      - name: Enable Corepack before setting up Node
+        run: corepack enable
+
+      - name: Determin PR_NUMBER and BASE_URL
+        id: pr_info
+        run: |
+          PR_NUMBER="${{github.event.pull_request.number}}"
+          BASE_URL="/deploy_preview/release/pr-${PR_NUMBER}"
+          ESCAPED_BASE_URL="\/deploy_preview\/release\/pr-${PR_NUMBER}"
+          echo $PR_NUMBER
+          echo $BASE_URL
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
+          echo "BASE_URL=$BASE_URL" >> $GITHUB_OUTPUT
+          echo "ESCAPED_BASE_URL=$ESCAPED_BASE_URL" >> $GITHUB_OUTPUT
+        
+      - name: Remove Deploy preview from staging
+        run: |
+          echo "Removing Deploy Preview from staging on url https://staging.docs.digital.ai${{ steps.pr_info.outputs.BASE_URL }}"
