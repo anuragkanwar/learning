@@ -25,6 +25,8 @@ jobs:
         run: |
           PR_NUMBER="${{github.event.pull_request.number}}"
           BASE_URL="/deploy_preview/pr-${PR_NUMBER}"
+          echo $PR_NUMBER
+          echo $BASE_URL
           echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
           echo "BASE_URL=$BASE_URL" >> $GITHUB_ENV
       
