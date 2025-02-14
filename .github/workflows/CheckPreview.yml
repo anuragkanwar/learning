@@ -79,7 +79,6 @@ jobs:
           echo "ESCAPED_BASE_URL=$ESCAPED_BASE_URL" >> $GITHUB_OUTPUT
       
       - name: add a PR comment in a table format
-        if: github.event_name == 'pull_request' && github.event.action == 'opened'
         uses: thollander/actions-comment-pull-request@v3
         with:
           message: |
