@@ -34,7 +34,9 @@ jobs:
         run : |
             PR_NUMBER="${{ steps.pr_info.outputs.PR_NUMBER }}"
             BASE_URL="${{ steps.pr_info.outputs.BASE_URL }}"
-            sed -i "s/baseUrl: (.*?),/baseUrl: '${BASE_URL}',/g" docusaurus.config.js
+            # sed -i "s|baseUrl: (.*?),/baseUrl: '${BASE_URL}',/g" docusaurus.config.js
+            # change the base URL in docusaurus.config.js
+            sed -i "s|baseUrl: (.*?),|baseUrl: '${BASE_URL}',|g" docusaurus.config.js
             echo "BASE_URL=$BASE_URL"
             cat docusaurus.config.js
       
