@@ -25,8 +25,8 @@ jobs:
         id: pr_info
         run: |
           PR_NUMBER="${{github.event.pull_request.number}}"
-          BASE_URL="/deploy_preview/release/pr-${PR_NUMBER}"
-          ESCAPED_BASE_URL="\/deploy_preview\/release\/pr-${PR_NUMBER}"
+          BASE_URL="/deploy_preview/release/pr-${PR_NUMBER}/"
+          ESCAPED_BASE_URL="\/deploy_preview\/release\/pr-${PR_NUMBER}\/"
           echo $PR_NUMBER
           echo $BASE_URL
           echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
@@ -51,7 +51,7 @@ jobs:
             | Name | Link |
             |---|---|
             | 😎 Deploy Preview | <https://staging.docs.digital.ai${{ steps.pr_info.outputs.BASE_URL }}> |
-            | 📱 Preview On Mobile | ![QR Code](https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://staging.docs.digital.ai${{ steps.pr_info.outputs.BASE_URL }}&color=498500&ecc=H) |
+            | 📱 Preview On Mobile | ![QR Code](https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://staging.docs.digital.ai${{ steps.pr_info.outputs.BASE_URL }}&color=498500&ecc=Q) |
 
 
   cleanup-pr:
