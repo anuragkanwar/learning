@@ -1,0 +1,45 @@
+name: Check Preview
+permissions:
+  id-token: write
+  contents: write
+
+on:
+  pull_request:
+    types: [opened, reopened, closed, synchronize]
+
+jobs:
+  Preview:
+    if : github.event.pull_request.merged == false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth : 0
+
+      - name: Enable Corepack before setting up Node
+        run: corepack enable
+
+      - name: Determin PR_NUMBER and BASE_URL
+        id: pr_info
+        run: |
+          PR_NUMBER="${{github.event.pull_request.number}}"
+          BASE_URL="/deploy_preview/pr-${PR_NUMBER}"
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
+          echo "BASE_URL=$BASE_URL" >> $GITHUB_ENV
+      
+      - name: Build Project
+        run : |
+            PR_NUMBER="${{ steps.pr_info.outputs.PR_NUMBER }}"
+            BASE_URL="${{ steps.pr_info.outputs.BASE_URL }}"
+            sed -i "s/baseUrl: (.*?),/baseUrl: '${BASE_URL}',/g" docusaurus.config.js
+            echo "BASE_URL=$BASE_URL"
+            cat docusaurus.config.js
+      
+      - name: add a PR comment in a table format
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          message: |
+            | Preview URL | QR Code |
+            | ----------- | ------- |
+            | [Preview URL](https://staging.docs.digital.ai${{ steps.pr_info.outputs.BASE_URL }}) | ![QR Code](https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://staging.docs.digital.ai${{ steps.pr_info.outputs.BASE_URL }}) |
