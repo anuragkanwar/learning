@@ -2,6 +2,7 @@ name: Check Preview
 permissions:
   id-token: write
   contents: write
+  pull-requests: write
 
 on:
   pull_request:
