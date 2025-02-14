@@ -25,18 +25,21 @@ jobs:
         run: |
           PR_NUMBER="${{github.event.pull_request.number}}"
           BASE_URL="/deploy_preview/pr-${PR_NUMBER}"
+          ESCAPED_BASE_URL="\/deploy_preview\/pr-${PR_NUMBER}"
           echo $PR_NUMBER
           echo $BASE_URL
           echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
           echo "BASE_URL=$BASE_URL" >> $GITHUB_OUTPUT
+          echo "ESCAPED_BASE_URL=$ESCAPED_BASE_URL" >> $GITHUB_OUTPUT
       
       - name: Build Project
         run : |
             PR_NUMBER="${{ steps.pr_info.outputs.PR_NUMBER }}"
             BASE_URL="${{ steps.pr_info.outputs.BASE_URL }}"
+            ESCAPED_BASE_URL="${{ steps.pr_info.outputs.ESCAPED_BASE_URL }}"
             # sed -i "s|baseUrl: (.*?),/baseUrl: '${BASE_URL}',/g" docusaurus.config.js
             # change the base URL in docusaurus.config.js
-            sed -i "s/baseUrl: '[^']*'/baseUrl: '${BASE_URL}'/" docusaurus.config.js
+            sed -i "s/baseUrl: '[^']*'/baseUrl: '$ESCAPED_BASE_URL'/" docusaurus.config.js
             echo "BASE_URL=$BASE_URL"
             cat docusaurus.config.js
       
