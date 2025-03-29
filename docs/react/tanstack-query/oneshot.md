@@ -2375,3 +2375,162 @@ React Query’s mutation system simplifies complex write operations by:
 - Seamlessly integrating with cached queries.  
 
 By leveraging `useMutation`, you can build resilient, user-friendly interfaces that handle server-state changes efficiently. 🚀
+
+## Fuzzy query key matching
+
+### **Query Key Invalidation & Fuzzy Matching in React Query**
+
+In React Query, **query keys** uniquely identify cached data. Invalidating these keys allows you to mark data as stale, triggering automatic refetches to keep your UI in sync with the server. **Fuzzy key matching** enables bulk invalidation of queries that share partial key structures, reducing boilerplate and ensuring consistency.
+
+---
+
+### **1. Query Key Invalidation Basics**  
+
+Use `queryClient.invalidateQueries()` to mark cached data as stale and force refetches.  
+
+```javascript
+import { useQueryClient } from '@tanstack/react-query';
+
+const queryClient = useQueryClient();
+
+// Invalidate all queries with the key ['todos']
+queryClient.invalidateQueries({ queryKey: ['todos'] });
+```
+
+---
+
+### **2. Exact vs. Fuzzy Matching**  
+
+By default, `invalidateQueries` uses **fuzzy (partial) matching**. Add `exact: true` for exact matches.  
+
+| Scenario                | Code Example                                      | Matches                                      |  
+|-------------------------|--------------------------------------------------|----------------------------------------------|  
+| **Exact Match**         | `invalidateQueries({ queryKey: ['todos'], exact: true })` | Only `['todos']` (no subkeys).               |  
+| **Fuzzy Match** (Default)| `invalidateQueries({ queryKey: ['todos'] })`      | All keys starting with `['todos']` (e.g., `['todos', 'list']`, `['todos', 1]`). |  
+
+---
+
+### **3. Fuzzy Key Matching in Action**  
+
+#### **Example 1: Invalidate All Todos**  
+
+Invalidate all queries related to `todos`, regardless of subkeys:  
+
+```javascript
+// Invalidates:
+// - ['todos']
+// - ['todos', { status: 'done' }]
+// - ['todos', 1]
+queryClient.invalidateQueries({ queryKey: ['todos'] });
+```
+
+#### **Example 2: Invalidate Nested Keys**  
+
+Invalidate all user-related queries for a specific `userId`:  
+
+```javascript
+// Invalidates:
+// - ['user', 1, 'profile']
+// - ['user', 1, 'posts']
+queryClient.invalidateQueries({ queryKey: ['user', userId] });
+```
+
+---
+
+### **4. Advanced Invalidation with Predicates**  
+
+For complex scenarios, use a `predicate` function to filter queries:  
+
+```javascript
+// Invalidate all todos that are marked as stale
+queryClient.invalidateQueries({
+  predicate: (query) =>
+    query.queryKey[0] === 'todos' && query.isStale(),
+});
+
+// Invalidate all queries with a numeric ID in the key
+queryClient.invalidateQueries({
+  predicate: (query) =>
+    typeof query.queryKey[1] === 'number',
+});
+```
+
+---
+
+### **5. Key Structure Best Practices**  
+
+Design query keys hierarchically to leverage fuzzy matching:  
+
+```javascript
+// Good: Hierarchical keys for easy invalidation
+['todos', 'list', { status: 'active' }]
+['todos', 'detail', 1]
+
+// Bad: Unstructured keys complicate fuzzy matching
+['todos-active-list']
+['todo-detail-1']
+```
+
+---
+
+### **6. Use Cases for Fuzzy Matching**  
+
+1. **After Mutations**: Invalidate all related queries when data changes.  
+
+   ```javascript
+   // After deleting a todo, invalidate all todo lists
+   queryClient.invalidateQueries({ queryKey: ['todos'] });
+   ```
+
+2. **Bulk Updates**: Refresh all entries of a type (e.g., all `posts`).  
+3. **Multi-Tab Apps**: Sync data across components with similar keys.  
+
+---
+
+### **7. Avoiding Over-Invalidation**  
+
+- Use `exact: true` when targeting specific queries.  
+- Avoid overly broad keys (e.g., `['data']`).  
+- Prefer granular keys for independent data segments.  
+
+---
+
+### **8. How Invalidation Works**  
+
+- **Stale Data**: Invalidated queries are marked stale.  
+- **Refetching**: If the query is active (used in a mounted component), it refetches automatically.  
+- **Cache Retention**: Invalidated data stays cached until garbage-collected (`cacheTime`).  
+
+---
+
+### **9. Example: Todo App Workflow**  
+
+```javascript
+function useDeleteTodo() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: deleteTodo,
+    onSuccess: () => {
+      // Invalidate all todo-related queries
+      queryClient.invalidateQueries({ queryKey: ['todos'] });
+      // Exact match for a single todo detail
+      queryClient.invalidateQueries({
+        queryKey: ['todo', id],
+        exact: true,
+      });
+    },
+  });
+}
+```
+
+---
+
+### **Key Takeaways**  
+
+1. **Fuzzy Matching** simplifies bulk operations by targeting partial keys.  
+2. **Exact Matching** ensures precision for unique keys.  
+3. **Predicates** offer fine-grained control for complex scenarios.  
+4. **Key Design** is critical for efficient invalidation.  
+
+By mastering these concepts, you can keep your cached data fresh with minimal code! 🚀
