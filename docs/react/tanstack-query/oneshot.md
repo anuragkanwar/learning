@@ -1,4 +1,6 @@
-# its an async state manager that is acutely aware of the needs of server state
+# React-Query
+
+**its an async state manager that is acutely aware of the needs of server state**
 
 ## Query Fundamentals
 
