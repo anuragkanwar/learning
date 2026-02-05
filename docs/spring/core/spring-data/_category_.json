@@ -1,0 +1,8 @@
+{
+  "label": "Chapter 11: Spring Data JPA",
+  "position": 11,
+  "link": {
+    "type": "generated-index",
+    "description": "Simplifying database access with Spring Data JPA"
+  }
+}

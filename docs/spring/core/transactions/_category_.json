@@ -1,0 +1,8 @@
+{
+  "label": "Chapter 10: Transaction Management",
+  "position": 10,
+  "link": {
+    "type": "generated-index",
+    "description": "Deep dive into Spring Transactions: Proxies, Propagation, and Pitfalls"
+  }
+}

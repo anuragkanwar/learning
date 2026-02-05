@@ -1,30 +1,360 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Clean, Maintainable Theme
+ * Uses CSS custom properties for easy customization
  */
 
-/* You can override the default Infima variables here. */
-:root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+/* ========================================
+   1. FONTS
+   ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+
+html, body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+/* ========================================
+   2. CSS CUSTOM PROPERTIES (Variables)
+   ======================================== */
+:root {
+  /* Colors */
+  --color-bg: #0c0c0c;
+  --color-bg-elevated: #121212;
+  --color-bg-hover: #171717;
+  --color-border: #1c1c1c;
+  --color-border-hover: #262626;
+  --color-text: #737373;
+  --color-text-muted: #525252;
+  --color-heading: #e5e5e5;
+  --color-primary: #78716c;
+  --color-primary-hover: #8a847e;
+
+  /* Font Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-full: 9999px;
+
+  /* Infima overrides */
+  --ifm-color-primary: var(--color-primary);
+  --ifm-color-primary-dark: #6b6560;
+  --ifm-color-primary-light: var(--color-primary-hover);
+  --ifm-background-color: var(--color-bg);
+  --ifm-background-surface: var(--color-bg-elevated);
+  --ifm-navbar-background-color: rgba(12, 12, 12, 0.8);
+  --ifm-footer-background-color: #090909;
+  --ifm-font-color-base: var(--color-text);
+  --ifm-heading-color: var(--color-heading);
+  --ifm-link-color: var(--color-primary-hover);
+  --ifm-link-hover-color: #a8a29e;
+  --ifm-border-color: var(--color-border);
+  --ifm-code-background: var(--color-bg-hover);
+  --ifm-code-font-size: 92%;
+  --ifm-navbar-height: 60px;
+  --ifm-h1-font-size: var(--text-3xl);
+  --ifm-h2-font-size: var(--text-2xl);
+  --ifm-h3-font-size: var(--text-xl);
+}
+
+/* ========================================
+   3. BASE STYLES
+   ======================================== */
+::selection {
+  background: rgba(120, 113, 108, 0.2);
+  color: var(--color-heading);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-hover);
+  border-radius: 3px;
+}
+
+/* ========================================
+   4. NAVBAR
+   ======================================== */
+.navbar {
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar__brand {
+  font-weight: 500;
+  color: var(--color-heading);
+}
+
+.navbar__link {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.navbar__link:hover,
+.navbar__link--active {
+  color: var(--color-heading);
+}
+
+/* ========================================
+   5. BUTTONS
+   ======================================== */
+.button {
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.button--primary {
+  background: var(--color-primary);
+  color: var(--color-bg);
+}
+
+.button--primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.button--secondary {
+  border: 1px solid var(--color-text-muted);
+  color: var(--color-heading);
+  background: transparent;
+}
+
+.button--secondary:hover {
+  background: var(--color-bg-hover);
+  border-color: var(--color-text);
+}
+
+/* ========================================
+   6. CODE BLOCKS
+   ======================================== */
+.theme-code-block {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+}
+
+.theme-code-block pre {
+  background: #141414 !important;
+  font-size: var(--text-sm) !important;
+  line-height: 1.6 !important;
+}
+
+code {
+  background: rgba(120, 113, 108, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+  font-size: 0.9em;
+  border: 1px solid var(--color-border);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ========================================
+   7. CARDS & CONTAINERS
+   ======================================== */
+.card {
+  background: var(--color-bg-hover);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.card:hover {
+  border-color: var(--color-border-hover);
+}
+
+/* ========================================
+   8. SIDEBAR
+   ======================================== */
+.menu__link {
+  color: var(--color-text-muted);
+  border-radius: var(--radius-sm);
+}
+
+.menu__link:hover {
+  color: var(--color-heading);
+  background: var(--color-bg-hover);
+}
+
+.menu__link--active {
+  color: var(--color-heading);
+  background: rgba(120, 113, 108, 0.08);
+}
+
+/* ========================================
+   9. FOOTER (Swizzled Component)
+   ======================================== */
+.footer {
+  background: #090909 !important;
+  border-top: 1px solid var(--color-border) !important;
+}
+
+.footer__links {
+  justify-content: center;
+}
+
+.footer__col {
+  text-align: center;
+}
+
+.footer__title {
+  color: var(--color-text) !important;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.footer__link-item {
+  color: var(--color-text-muted) !important;
+}
+
+.footer__link-item:hover {
+  color: var(--color-heading) !important;
+}
+
+.footer__copyright {
+  color: var(--color-text-muted) !important;
+  font-size: var(--text-sm);
+}
+
+.footer__bottom {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-8);
+}
+
+/* ========================================
+   10. ADMONITIONS
+   ======================================== */
+.theme-admonition {
+  border-radius: var(--radius-md);
+  border: 1px solid;
+}
+
+/* Note - Blue/Gray tint */
+.theme-admonition-note {
+  background: rgba(99, 102, 241, 0.08);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.theme-admonition-note .admonitionHeading {
+  color: #818cf8;
+}
+
+/* Tip - Green tint */
+.theme-admonition-tip {
+  background: rgba(34, 197, 94, 0.08);
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.theme-admonition-tip .admonitionHeading {
+  color: #4ade80;
+}
+
+/* Warning - Yellow/Orange tint */
+.theme-admonition-warning {
+  background: rgba(234, 179, 8, 0.08);
+  border-color: rgba(234, 179, 8, 0.3);
+}
+
+.theme-admonition-warning .admonitionHeading {
+  color: #facc15;
+}
+
+/* Danger - Red tint */
+.theme-admonition-danger {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.theme-admonition-danger .admonitionHeading {
+  color: #f87171;
+}
+
+/* Info - Cyan tint */
+.theme-admonition-info {
+  background: rgba(6, 182, 212, 0.08);
+  border-color: rgba(6, 182, 212, 0.3);
+}
+
+.theme-admonition-info .admonitionHeading {
+  color: #22d3ee;
+}
+
+/* ========================================
+   11. TABLES & IMAGES
+   ======================================== */
+table {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+table thead {
+  background: var(--color-bg-hover);
+}
+
+.theme-doc-markdown img {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+/* ========================================
+   12. PAGINATION
+   ======================================== */
+.pagination-nav__link {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.pagination-nav__link:hover {
+  border-color: var(--color-border-hover);
+  background: var(--color-bg-hover);
+}
+
+/* ========================================
+   13. TAGS
+   ======================================== */
+.tag {
+  border-radius: var(--radius-full);
+  padding: 4px 12px;
+  font-size: var(--text-xs);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+/* ========================================
+   14. TYPOGRAPHY
+   ======================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.markdown h1 {
+  color: var(--color-heading);
+}
+
+.theme-doc-markdown {
+  line-height: 1.7;
 }

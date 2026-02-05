@@ -1,11 +1,96 @@
 .features {
-  display: flex;
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
+  padding: var(--space-12) 0;
+  background: var(--color-bg);
+  position: relative;
 }
 
-.featureSvg {
-  height: 200px;
-  width: 200px;
+.features::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.sectionTag {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+  letter-spacing: 2px;
+}
+
+.sectionTitle {
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+/* Feature Cards */
+.featureCard {
+  padding: var(--space-8) var(--space-6);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  text-align: center;
+  transition: all 0.2s ease;
+  height: 100%;
+}
+
+.featureCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-border-hover);
+  background: var(--color-bg-hover);
+}
+
+.featureIcon {
+  font-size: 3rem;
+  margin-bottom: var(--space-4);
+  display: block;
+}
+
+.featureTitle {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-heading);
+  margin-bottom: var(--space-3);
+}
+
+.featureDescription {
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  font-size: var(--text-base);
+}
+
+.featureDescription strong {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .features {
+    padding: var(--space-10) var(--space-4);
+  }
+
+  .sectionTitle {
+    font-size: var(--text-xl);
+  }
+
+  .featureCard {
+    padding: var(--space-6) var(--space-4);
+    margin-bottom: var(--space-3);
+  }
+
+  .featureIcon {
+    font-size: 2.5rem;
+  }
 }
