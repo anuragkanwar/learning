@@ -100,7 +100,6 @@ html, body {
    4. NAVBAR
    ======================================== */
 .navbar {
-  backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -201,6 +200,11 @@ code {
 .menu__link--active {
   color: var(--color-heading);
   background: rgba(120, 113, 108, 0.08);
+}
+
+/* Mobile sidebar - solid background to prevent see-through and ensure it stays in front */
+.navbar-sidebar {
+  background-color: var(--color-bg) !important;
 }
 
 /* ========================================
