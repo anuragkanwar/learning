@@ -159,16 +159,45 @@ html, body {
 .theme-code-block pre {
   background: #141414 !important;
   font-size: var(--text-sm) !important;
-  line-height: 1.6 !important;
+  line-height: 1.7 !important;
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, Monaco, 'Courier New', monospace !important;
+  font-feature-settings: "liga" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+.theme-code-block pre code {
+  font-family: inherit !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  font-weight: 400;
+}
+
+/* Inline code */
 code {
-  background: rgba(120, 113, 108, 0.08);
+  background: rgba(120, 113, 108, 0.12);
   border-radius: var(--radius-sm);
   padding: 2px 6px;
-  font-size: 0.9em;
+  font-size: 0.875em;
   border: 1px solid var(--color-border);
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, Monaco, 'Courier New', monospace;
+  font-feature-settings: "liga" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #d4d4d4;
+}
+
+/* Improve code syntax highlighting colors for better contrast */
+.theme-code-block .token.keyword,
+.theme-code-block .token.operator {
+  font-weight: 500;
+}
+
+.theme-code-block .token.function {
+  font-weight: 500;
 }
 
 /* ========================================

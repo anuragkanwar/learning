@@ -48,6 +48,11 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      colorMode: {
+        defaultMode: 'dark',
+        disableSwitch: true,
+        respectPrefersColorScheme: false,
+      },
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
         title: 'Anumax',
@@ -106,9 +111,9 @@ const config = {
         copyright: `© ${new Date().getFullYear()} Anumax`,
       },
       prism: {
-        theme: prismThemes.github,
-        darkTheme: prismThemes.dracula,
-        additionalLanguages: ['java']
+        theme: prismThemes.gruvboxMaterialDark,
+        darkTheme: prismThemes.gruvboxMaterialDark,
+        additionalLanguages: ['java', 'sql', 'bash']
       },
     }),
 };
