@@ -1,9 +1,9 @@
 ---
 sidebar_position: 3
-title: "9.3 JdbcTemplate"
+title: "JdbcTemplate"
 ---
 
-# 9.3 JdbcTemplate
+# JdbcTemplate
 
 ## What is JdbcTemplate?
 

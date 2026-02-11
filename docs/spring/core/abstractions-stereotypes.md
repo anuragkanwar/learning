@@ -1,9 +1,9 @@
 ---
 sidebar_position: 4
-title: "Chapter 4: Abstractions & Stereotypes"
+title: "Abstractions & Stereotypes"
 ---
 
-# Chapter 4: Abstractions & Component Stereotypes
+# Abstractions & Component Stereotypes
 
 ## Why Use Interfaces?
 

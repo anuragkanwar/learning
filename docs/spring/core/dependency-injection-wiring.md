@@ -1,9 +1,9 @@
 ---
 sidebar_position: 3
-title: "Chapter 3: Wiring & DI"
+title: "Wiring & DI"
 ---
 
-# Chapter 3: Dependency Injection & Wiring
+# Dependency Injection & Wiring
 
 ## What is Wiring?
 

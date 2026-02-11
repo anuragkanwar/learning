@@ -1,9 +1,9 @@
 ---
 sidebar_position: 1
-title: "Chapter 1: Introduction"
+title: "Introduction"
 ---
 
-# Chapter 1: What is Spring?
+# What is Spring?
 
 ## The Problem Spring Solves
 

@@ -1,9 +1,9 @@
 ---
 sidebar_position: 1
-title: "8.1 MVC Architecture"
+title: "MVC Architecture"
 ---
 
-# 8.1 Spring MVC Architecture
+# Spring MVC Architecture
 
 ## What is MVC?
 

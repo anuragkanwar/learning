@@ -1,9 +1,9 @@
 ---
 sidebar_position: 4
-title: "9.4 NamedParameterJdbcTemplate"
+title: "NamedParameterJdbcTemplate"
 ---
 
-# 9.4 NamedParameterJdbcTemplate
+# NamedParameterJdbcTemplate
 
 ## The Problem with ?
 

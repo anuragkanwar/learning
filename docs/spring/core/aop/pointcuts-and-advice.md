@@ -1,9 +1,9 @@
 ---
 sidebar_position: 2
-title: "6.2 Pointcuts & Advice"
+title: "Pointcuts & Advice"
 ---
 
-# 6.2 Pointcuts & Advice Deep Dive
+# Pointcuts & Advice Deep Dive
 
 ## Pointcut Expression Cheat Sheet
 

@@ -1,9 +1,9 @@
 ---
 sidebar_position: 5
-title: "11.5 Entity Relationships"
+title: "Entity Relationships"
 ---
 
-# 11.5 Entity Relationships
+# Entity Relationships
 
 ## JPA Relationship Mapping
 

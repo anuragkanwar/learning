@@ -1,9 +1,9 @@
 ---
 sidebar_position: 4
-title: "11.4 Pagination & Sorting"
+title: "Pagination & Sorting"
 ---
 
-# 11.4 Pagination & Sorting
+# Pagination & Sorting
 
 ## Why Pagination Matters
 

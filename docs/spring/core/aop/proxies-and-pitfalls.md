@@ -1,9 +1,9 @@
 ---
 sidebar_position: 3
-title: "6.3 Proxies & Pitfalls"
+title: "Proxies & Pitfalls"
 ---
 
-# 6.3 Proxies, Internals & Pitfalls
+# Proxies, Internals & Pitfalls
 
 ## How Spring AOP Works (The Proxy Pattern)
 

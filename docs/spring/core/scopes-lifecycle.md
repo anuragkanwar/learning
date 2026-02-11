@@ -1,9 +1,9 @@
 ---
 sidebar_position: 5
-title: "Chapter 5: Scopes & Lifecycle"
+title: "Scopes & Lifecycle"
 ---
 
-# Chapter 5: Bean Scopes & Lifecycle
+# Bean Scopes & Lifecycle
 
 ## What is a Bean Scope?
 

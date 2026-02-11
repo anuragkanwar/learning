@@ -1,9 +1,9 @@
 ---
 sidebar_position: 3
-title: "11.3 Custom Queries"
+title: "Custom Queries"
 ---
 
-# 11.3 Custom Queries with @Query
+# Custom Queries with @Query
 
 ## When Method Names Aren't Enough
 

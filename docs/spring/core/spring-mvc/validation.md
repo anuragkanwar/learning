@@ -1,9 +1,9 @@
 ---
 sidebar_position: 4
-title: "8.4 Validation & Web Scopes"
+title: "Validation & Web Scopes"
 ---
 
-# 8.4 Validation & Web Scopes
+# Validation & Web Scopes
 
 ## Bean Scopes in Web Applications
 

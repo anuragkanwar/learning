@@ -1,9 +1,9 @@
 ---
 sidebar_position: 2
-title: "9.2 The Problem with Raw JDBC"
+title: "The Problem with Raw JDBC"
 ---
 
-# 9.2 The Problem with Raw JDBC
+# The Problem with Raw JDBC
 
 ## Plain JDBC Code (The Bad Old Way)
 

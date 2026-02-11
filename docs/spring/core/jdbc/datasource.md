@@ -1,9 +1,9 @@
 ---
 sidebar_position: 1
-title: "9.1 DataSource Configuration"
+title: "DataSource Configuration"
 ---
 
-# 9.1 DataSource Configuration
+# DataSource Configuration
 
 ## What is a DataSource?
 

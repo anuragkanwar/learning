@@ -1,9 +1,9 @@
 ---
 sidebar_position: 1
-title: "11.1 What is Spring Data JPA"
+title: "What is Spring Data JPA"
 ---
 
-# 11.1 What is Spring Data JPA
+# What is Spring Data JPA
 
 ## The Problem: Too Much Boilerplate
 

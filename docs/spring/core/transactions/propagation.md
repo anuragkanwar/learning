@@ -1,9 +1,9 @@
 ---
 sidebar_position: 3
-title: "10.3 Propagation Levels"
+title: "Propagation Levels"
 ---
 
-# 10.3 Transaction Propagation
+# Transaction Propagation
 
 ## What is Propagation?
 

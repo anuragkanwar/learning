@@ -1,9 +1,9 @@
 ---
 sidebar_position: 1
-title: "6.1 Intro to AOP"
+title: "Intro to AOP"
 ---
 
-# 6.1 Introduction to AOP
+# Introduction to AOP
 
 ## What is AOP?
 

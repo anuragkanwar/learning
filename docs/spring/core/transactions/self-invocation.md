@@ -1,9 +1,9 @@
 ---
 sidebar_position: 4
-title: "10.4 The Achilles Heel: Self-Invocation"
+title: "The Achilles Heel: Self-Invocation"
 ---
 
-# 10.4 The Achilles Heel: Self-Invocation Problem
+# The Achilles Heel: Self-Invocation Problem
 
 ## The #1 Transaction Bug in Production
 

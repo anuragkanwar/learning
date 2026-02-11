@@ -1,9 +1,9 @@
 ---
 sidebar_position: 5
-title: "10.5 Rollback Rules & Configuration"
+title: "Rollback Rules & Configuration"
 ---
 
-# 10.5 Rollback Rules & Configuration
+# Rollback Rules & Configuration
 
 ## Default Rollback Behavior
 

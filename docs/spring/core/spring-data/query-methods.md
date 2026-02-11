@@ -1,9 +1,9 @@
 ---
 sidebar_position: 2
-title: "11.2 Query Methods"
+title: "Query Methods"
 ---
 
-# 11.2 Query Methods (Derived Queries)
+# Query Methods (Derived Queries)
 
 ## The Magic of Method Names
 

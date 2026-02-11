@@ -1,9 +1,9 @@
 ---
 sidebar_position: 6
-title: "11.6 Common Pitfalls"
+title: "Common Pitfalls"
 ---
 
-# 11.6 Common Pitfalls & Best Practices
+# Common Pitfalls & Best Practices
 
 ## The N+1 Problem
 

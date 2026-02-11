@@ -1,9 +1,9 @@
 ---
 sidebar_position: 2
-title: "8.2 Request & Response"
+title: "Request & Response"
 ---
 
-# 8.2 Request & Response Handling
+# Request & Response Handling
 
 ## Extracting Data from Requests
 

@@ -17,11 +17,13 @@ const config = {
     locales: ['en'],
   },
   markdown: {
+    mermaid: true,
     hooks: {
       onBrokenMarkdownImages: 'warn',
       onBrokenMarkdownLinks: 'warn',
     }
   },
+  themes: ['@docusaurus/theme-mermaid'],
   future: {
     v4: true,
     experimental_faster: true,
@@ -52,6 +54,9 @@ const config = {
         defaultMode: 'dark',
         disableSwitch: true,
         respectPrefersColorScheme: false,
+      },
+      mermaid: {
+        theme: { dark: 'dark' },
       },
       image: 'img/docusaurus-social-card.jpg',
       navbar: {

@@ -1,9 +1,9 @@
 ---
 sidebar_position: 3
-title: "8.3 Exception Handling"
+title: "Exception Handling"
 ---
 
-# 8.3 Exception Handling in Spring MVC
+# Exception Handling in Spring MVC
 
 ## The Problem
 

@@ -1,9 +1,9 @@
 ---
 sidebar_position: 2
-title: "Chapter 2: Context & Beans"
+title: "Context & Beans"
 ---
 
-# Chapter 2: Spring Context and Beans
+# Spring Context and Beans
 
 ## What is a Spring Bean?
 

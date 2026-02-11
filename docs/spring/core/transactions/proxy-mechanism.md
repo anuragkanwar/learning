@@ -1,9 +1,9 @@
 ---
 sidebar_position: 2
-title: "10.2 How Transactions Work (The Proxy)"
+title: "How Transactions Work (The Proxy)"
 ---
 
-# 10.2 How Transactions Work (The Proxy Mechanism)
+# How Transactions Work (The Proxy Mechanism)
 
 ## It's AOP Under the Hood
 

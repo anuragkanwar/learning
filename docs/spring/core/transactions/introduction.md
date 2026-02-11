@@ -1,9 +1,9 @@
 ---
 sidebar_position: 1
-title: "10.1 Why Transactions Matter"
+title: "Why Transactions Matter"
 ---
 
-# 10.1 Why Transactions Matter
+# Why Transactions Matter
 
 ## The Problem Without Transactions
 

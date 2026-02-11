@@ -1,9 +1,9 @@
 ---
 sidebar_position: 7
-title: "Chapter 7: Spring Boot Introduction"
+title: "Spring Boot Introduction"
 ---
 
-# Chapter 7: Spring Boot Introduction
+# Spring Boot Introduction
 
 ## What is Spring Boot?
 
