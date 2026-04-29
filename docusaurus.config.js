@@ -35,7 +35,6 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: './sidebars.js',
           showLastUpdateTime: true,
           routeBasePath: 'docs',
         },
@@ -67,12 +66,6 @@ const config = {
         },
         hideOnScroll: false,
         items: [
-          {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Docs',
-          },
           {
             href: 'https://github.com/anuragkanwar/learning',
             label: 'GitHub',
