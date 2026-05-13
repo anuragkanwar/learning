@@ -134,3 +134,44 @@ Whenever we share data / memory between Threads, the issue arises. We will look 
   }
   ```
 
+- `tryLock(): `it is same as `lock()` if the lock is available, but it does not wait like `lock()` and just return a boolean false value. If the lock is obtained it return a true value.By using this return boolean value, we can tell thread to do different task, like we can tell thread to do an alternative task which does not requires the lock.
+
+- `tryLock(long time, TimeUnit unit): `it an overloaded `tryLock()` function in which we can send a maximum wait time to wait for the lock. It is same as `lock()` method in that it waits for the lock, but only for a specific amount of time. It is similar to `tryLock()` method as it may returns without acquiring the lock; it return true is lock is acquired and false if not.
+
+## Nested Locks
+
+- We may extract out common code from a `synchronized` method into a private non `synchronized` method[s]. The reason if they are already extracted out from `synchronized` method and is only called from that method, the lock is already acquired, so there is no need to again make it `synchronized`. We can also make them `synchronized`, but Java threads know if they already own the lock they do no have to wait to release and again grab the lock.
+
+- This works because system keep tracks of the number of recursive acquisition of the lock, finally freeing the upon exiting the first method (or block) the acquired the lock. This functionality is called **Nested Locking**.
+
+- Nested Locks are supported by the `ReentrantLock` class. If the lock is currently already own by the thread, it just increment an internal count of the number of nested Lock requests. Calls to `unlock()` method decrement this count.
+
+- The lock is not freed until the lock counter reaches to 0. Because of this they behave exactly like the synchronized keyword.
+
+- A major advantage of nested locks is about cross calling methods. Basically method of one class can call methods of another class which in turn can call back methods on 1st class. If java did not support this nested locks, and the methods of both classes were `synchronized` we could deadlock the program. The deadlock occurs because the final called method tries to grab a lock that the current thread already grabbed. This lock can't be freed until the original method unlocks it, but it cant unlock it until it completes the execution of the original method. And the original method can't complete its execution because the final method does not return: it is still waiting to grab the lock.
+
+- It is also possible to detect how many times a lock has been recursively acquired, it is not possible with `synchronized` keyword or with `Lock` interface, but this functionality is implemented by the `ReentrantLock` Class.
+  ```java
+  public class ReentrantLock implements Lock {
+    public int getHoldCount();
+    public boolean isLocked();
+    public boolean isHeldByCurrentThread();
+    public int getQueueLength();
+  }
+  ```
+
+- `getHoldCount()` method returns the number of acquisitions that the current thread has made on the lock. The return value in this case here means that thread does not own the lock which does not mean that the lock is free to acquire. That is checked via `isLocked()`;
+
+- `isHeldByCurrentThread()` is used to check weather current thread hold the lock, and by `getQueueLength()` we can get an estimate on how many threads are waiting to acquire the lock.
+
+
+## Lock Fairness
+
+- Fairness is subjective, can mean anything to anyone
+
+- we can declare our Lock like this
+  ```java
+  private final Lock scoreLock = new ReentrantLock(true);
+  ```
+
+- Here `true` represents enable lock fairness, which in this case means `FIFO` order.
