@@ -111,7 +111,7 @@ const config = {
       prism: {
         theme: prismThemes.gruvboxMaterialDark,
         darkTheme: prismThemes.gruvboxMaterialDark,
-        additionalLanguages: ['java', 'sql', 'bash']
+        additionalLanguages: ['java', 'sql', 'bash', 'plsql']
       },
     }),
 };

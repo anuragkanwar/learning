@@ -134,3 +134,59 @@ Sometimes we just need more mechanism in our thread classes to make our thread m
 ### `Wait-and-Notify` Mechanism with Synchronized Blocks
 
 - using explicit lock with `synchronized` blocks helps us to make our lock span smaller and thus multiple threads can enter multiple methods simultaneously if use multiple different locks for them.
+
+## Condition Variables
+
+- These are separate but similar constructs with same functionality as `wait-and-notify` mechanism.
+
+- The one subtle difference is the `wait-and-notify` mechanism is highly integrated with its associated lock. This makes the mechanism easier to use than its condition variable counterpart.
+
+- So basically calling `wait()` and `notify()` from synchronized section of code feels natural whereas using condition variables requires us to create a separate mutex lock, store it and then eventually destroy the lock.
+
+- However there is a problem with `wait-and-notify` mechanism, there is only 1 waiting room in the building (object).
+
+- So if we want some particular thread types to open lets say (eg only producer threads not consumers) we cant do that with normal `wait-and-notify` mechanism. We require a different synchronization constructs to help that happen, and that is where Condition Variables comes into picture.
+
+- So basically using condition variables (waiting rooms) and explicit locks (keys) we can make detach our key from single waiting room, and can use multiple waiting rooms (condition variables).
+
+- In Java condition variable is implemented with `Condition` interface. This is tied to `Lock` interface just as `wait-and-notify` is tied to `synchronized` interface.
+
+- So to create a new condition (waiting room) from a lock (key) we use
+  ```java
+  Lock l = new ReentrantLock();
+  Conidtion condition = l.newCondition();
+  ```
+
+- using condition variable is fairly easy as 
+  
+  - `wait()` -> `await()`
+  - `notify()` -> `signal()`
+
+- Remember condition variable is tied to explicit lock, and can only be generated from a lock. So naturally all the things happens the same way just both our condition and lock are explicitly defined.
+
+- :::info[Please read: Mental Model]
+
+  - Initially think of basic `synchronized` intrinsic lock as old school traditional lock, which require access via a traditional iron key.
+    
+    - If used in method: it will auto use the current building(object) key to use in the lock.
+
+    - If use in block: it will use key of the object passed into it, and will lock using `synchronized(object)`.
+
+    - Other threads will go into building's (object) waiting room using `object.wait()`, which tell to keep the key in its place.
+
+  - Later we got new fancy locks with pin. These are our explicit locks.
+
+    - To use this lock we call `l.lock()` and to leave we call `l.unlock()`.
+
+    - Now this modern lock is also a object, which means it have its own internal old school lock. But now if i call `l.wait()` to give up the key, it will break, why because there is no key to put back, the old school lock is used to build inside of this modern lock, but if we mess with its internal we can break the lock.
+
+    - So to not mess with internal old school lock, we got new construct called `Conidtion Variable` which works with these for these modern locks. So `wait()` -> `cv.await()` => log me out i am leaving the room to sleep and `notify()` -> `cv.signal()` => signal the sleeping threads to wakeup.
+
+    :::note[GKS]
+    Do not mix up different kinds of locks.
+    - If you use synchronized, you MUST use wait() and notify().
+    - If you use Lock, you MUST use Condition.await() and Condition.signal().
+    :::
+ 
+
+ - Since `Conidtion Variable` are like waiting rooms, we can create multiple of these in our building so that we can wake up particular set of threads when a certain type of condition is met.
